@@ -59,19 +59,6 @@ class POI(object):
             self.topleft[0]=min(self.topleft[0],int(self.vertices[i]))
             self.topleft[1]=min(self.topleft[1],int(self.vertices[i+1]))
             i+=2
-        # if(self.edges%2==0):
-        #     comp1=self.edgelength[:int(self.edges/2)]
-        #     comp2=self.edgelength[int(self.edges/2):]
-        #     if(comp1==comp2):
-        #         self.dotproduct=[]
-        #         i=4
-        #         while(i<len(self.vertices)-2):
-        #             x1=int(self.vertices[i])-int(self.vertices[i-2])
-        #             x2=int(self.vertices[i])-int(self.vertices[i+2])
-        #             y1=int(self.vertices[i+1])-int(self.vertices[i-1])
-        #             y2=int(self.vertices[i+1])-int(self.vertices[i+3])
-        #             self.dotproduct.append(abs(x1*x2+y1*y2))
-        #             i+=2
 
 def first():
     while(True):
@@ -90,35 +77,21 @@ def getpoi():
 
 def check(poi,object,flag):
     if(poi.edges==object.edges):
-        # temp=object.edgelength.index(max(object.edgelength))
-        # object.edgelength=object.edgelength[temp:]+object.edgelength[:temp]
+        temp=object.edgelength.index(max(object.edgelength))
+        object.edgelength=object.edgelength[temp:]+object.edgelength[:temp]
         if(poi.edgelength==object.edgelength):
             if(flag==1):
                 ans1.append(object)
             else:
                 ans2.append(object)
-            # if(poi.edges%2==1):
-            #     object.paste()
-            # else:
-            #     dotproduct=[]
-            #     i=4
-            #     while(i<len(object.vertices)-2):
-            #         x1=int(object.vertices[i])-int(object.vertices[i-2])
-            #         x2=int(object.vertices[i])-int(object.vertices[i+2])
-            #         y1=int(object.vertices[i+1])-int(object.vertices[i-1])
-            #         y2=int(object.vertices[i+1])-int(object.vertices[i+3])
-            #         dotproduct.append(abs(x1*x2+y1*y2))
-            #         i+=2
-            #     if(dotproduct==poi.dotproduct):
-            #         object.paste()
 
 def dist(obj1,obj2):
     return((obj1.topleft[0]-obj2.topleft[0])**2+(obj1.topleft[1]-obj2.topleft[1])**2)
 
 first()
 poi1=getpoi()
-# temp=poi1.edgelength.index(max(poi1.edgelength))
-# poi1.edgelength=poi1.edgelength[temp:]+poi1.edgelength[:temp]
+temp=poi1.edgelength.index(max(poi1.edgelength))
+poi1.edgelength=poi1.edgelength[temp:]+poi1.edgelength[:temp]
 poi2=getpoi()
 interest.close()
 compare=dist(poi1,poi2)
