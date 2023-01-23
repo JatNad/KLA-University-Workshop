@@ -9,15 +9,15 @@ class polygon(object):
         self.datatype=file1.readline()
         self.coordinates=file1.readline()
         self.vertices=self.coordinates.split()
-        self.edges=int(self.vertices[1])-1
+        self.edges=int(self.vertices[1])-1 #number of sides in polynomial
         self.edgelength=[]
         i=2
         while(i<len(self.vertices)-2):
             temp=(int(self.vertices[i])-int(self.vertices[i+2]))**2+(int(self.vertices[i+1])-int(self.vertices[i+3]))**2
-            self.edgelength.append(temp)
+            self.edgelength.append(temp) #stores length of each side of polynomial
             i+=2
         self.endel=file1.readline()
-    def paste(self):
+    def paste(self): #function to print object
         file2.write(self.boundary)
         file2.write(self.layer)
         file2.write(self.datatype)
@@ -40,7 +40,7 @@ class POI(object):
             i+=2
         self.endel=interest.readline()
 
-def first():
+def first(): #function to print the header
     while(True):
         x=file1.readline()
         if(x=='boundary\n'):
@@ -48,22 +48,22 @@ def first():
         else:
             file2.write(x)
 
-def getpoi():
+def getpoi(): #function to extract poi information
     while(True):
         x=interest.readline()
         if(x=='boundary\n'):
             object=POI()
             return object
 
-def check(poi,object):
+def check(poi,object): #function to compare poi and source object
     if(poi.edges==object.edges):
-        temp=object.edgelength.index(max(object.edgelength))
-        object.edgelength=object.edgelength[temp:]+object.edgelength[:temp]
+        temp=object.edgelength.index(max(object.edgelength)) #rotates the list containing the edge lengths such
+        object.edgelength=object.edgelength[temp:]+object.edgelength[:temp] #that the longest edge is in the front
         if(poi.edgelength==object.edgelength):
             object.paste()
 
 first()
-poi=getpoi()
+poi=getpoi() 
 interest.close()
 
 while(True):
