@@ -7,6 +7,14 @@ class polygon(object):
         self.layer=file1.readline()
         self.datatype=file1.readline()
         self.coordinates=file1.readline()
+        self.vertices=self.coordinates.split()
+        self.edges=int(self.vertices[1])-1
+        self.edgelength=[]
+        i=2
+        while(i<len(self.vertices)-2):
+            temp=(int(self.vertices[i])-int(self.vertices[i+2]))**2+(int(self.vertices[i+1])-int(self.vertices[i+3]))**2
+            self.edgelength.append(temp)
+            i+=2
         self.endel=file1.readline()
     def paste(self):
         file2.write(self.boundary)
