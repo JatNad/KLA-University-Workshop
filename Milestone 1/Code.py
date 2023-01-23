@@ -2,12 +2,12 @@ file1=open('Format_Source.txt','r')
 file2=open('output.txt','w')
 
 class polygon(object):
-    def __init__(self,layer,datatype,coordinates,endel):
+    def __init__(self):
         self.boundary='boundary\n'
-        self.layer=layer
-        self.datatype=datatype
-        self.coordinates=coordinates
-        self.endel=endel
+        self.layer=file1.readline()
+        self.datatype=file1.readline()
+        self.coordinates=file1.readline()
+        self.endel=file1.readline()
     def paste(self):
         file2.write(self.boundary)
         file2.write(self.layer)
@@ -27,11 +27,7 @@ count=2
 
 first()
 while(True):
-    a=file1.readline()
-    b=file1.readline()
-    c=file1.readline()
-    d=file1.readline()
-    object=polygon(a,b,c,d)
+    object=polygon()
     if(count>0):
         count-=1
         object.paste()
